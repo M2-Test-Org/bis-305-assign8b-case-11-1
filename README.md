@@ -105,3 +105,9 @@ No contestants had talent Other
 Enter a talent type or Z to quit >> Z
 ```
 Given your entry of Z to quit, your program should then exit.
+
+**NOTE** that in order to pass this repo's tests, in addition to MindTap, to prepend the $ to currency values, use the `CultureInfo.GetCultureInfo` method. In order to do this, include the statement `using System.Globalization;` at the top of your program and format the output statements as follows: 
+
+```csharp
+  WriteLine("This is an example: {0}", value.ToString("C", CultureInfo.GetCultureInfo("en-US")));
+```
