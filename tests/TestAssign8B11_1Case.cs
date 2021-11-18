@@ -91,10 +91,10 @@ public class TestAssign8B11_1Case
         //use a string writer to format the expected outcome
         var expectedOutcome = new StringBuilder();
         expectedOutcome.Append("Enter number of contestants >> ");
-        expectedOutcome.AppendLine("Value does not fall within the expected range.");
+        //expectedOutcome.AppendLine("Value does not fall within the expected range.");
         expectedOutcome.AppendLine("Number must be between 0 and 30");
         expectedOutcome.Append("Enter number of contestants >> ");
-        expectedOutcome.AppendLine("Value does not fall within the expected range.");
+        //expectedOutcome.AppendLine("Value does not fall within the expected range.");
         expectedOutcome.AppendLine("Number must be between 0 and 30");
         expectedOutcome.Append("Enter number of contestants >> ");
         expectedOutcome.Append("Enter contestant name >> ");
