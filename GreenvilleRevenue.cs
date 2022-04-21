@@ -4,29 +4,25 @@ using System.Globalization;
 
 class GreenvilleRevenue
 {
-    public static void Main()
+    static void Main()
     {
         const int MIN_CONTESTANTS = 0;
         const int MAX_CONTESTANTS = 30;
         int num;
         int revenue = 0;
-
-        //HINT (2) - do this second - set QUIT and option variables
-		//HINT: set QUIT variable to character datatype equal to 'Z' here for user input
-        
-		//HINT: set space here as default value for the option variable value
-        
         Contestant[] contestants = new Contestant[MAX_CONTESTANTS];
         num = getContestantNumber(MIN_CONTESTANTS, MAX_CONTESTANTS);
         revenue = getContestantData(num, contestants, revenue);
         WriteLine("\n\nRevenue expected this year is {0}", revenue.ToString("C"));
-		
-        //HINT (3) - do this third
-        //HINT: check user input for stopping before calling getLists method with while loop here
-        
-        getLists(num, contestants);     
+        getLists(num, contestants);
     }
 
+    /// <summary>
+    /// Get and validate the contestant number from the user.
+    /// </summary>
+    /// <param name="min">Minimum number of contestants.</param>
+    /// <param name="max">Maximum number of contestants.</param>
+    /// <returns>Number of contestants.</returns>
     private static int getContestantNumber(int min, int max)
     {
         string entryString;
@@ -50,14 +46,13 @@ class GreenvilleRevenue
 				//the number must be between 0 and 30. Use exception-handling techniques to ensure a valid value 
 				//and display the error message: Number must be between 0 and 30
                 
-                //HINT (4) - do fourth - use a Try/Catch block. 
+                //HINT (2) - use a Try/Catch block. 
                 //HINT: in the Try block use the condition below. If true throw an ArgumentException.
                     if (num < min || num > max)
                 
                 //HINT: in the Catch block use the code section below to write the exception message to the user
                 //and allow the user to correct the input
                 {
-                    //HINT: WriteLine(e.Message);
                     WriteLine("Number must be between {0} and {1}", min, max);
                     num = max + 1;
                     Write("Enter number of contestants >> ");
@@ -67,6 +62,14 @@ class GreenvilleRevenue
         }
         return num;
     }
+
+    /// <summary>
+    /// Get and validate the contestant data from the user.
+    /// </summary>
+    /// <param name="num">Number of contentants.</param>
+    /// <param name="contestants">The array of potential contestants.</param>
+    /// <param name="revenue">Revenue variable passed in, set, and then returned.</param>
+    /// <returns>Revenue generated from contestants.</returns>
     private static int getContestantData(int num, Contestant[] contestants, int revenue)
     {
         const int ADULTAGE = 17;
@@ -75,27 +78,23 @@ class GreenvilleRevenue
         string name;
         char talent;
         int age;
-        //HINT (7) - do seventh
-        //HINT: int pos; here
         while (x < num)
         {
             Write("Enter contestant name >> ");
             name = ReadLine();
             WriteLine("Talent codes are:");
             for (int y = 0; y < Contestant.talentCodes.Length; ++y)
-                WriteLine("  {0}   {1}", Contestant.talentCodes[y], Contestant.talentStrings[y]); 
+                WriteLine("  {0}   {1}", Contestant.talentCodes[y], Contestant.talentStrings[y]);
             Write("       Enter talent code >> ");
             char.TryParse(ReadLine(), out talent);
             //From the instructions:
-            //Use exception-handling techniques to ensure a valid code and update the displayed 
-            //message to the following message:
+            //The program prompts the user for talent codes. Use exception-handling techniques to 
+            //ensure a valid code and update the displayed message to the following message:
             //x is not a valid talent code. Assigned as Invalid.
             //where x was the invalid code entered into the console.
             
-            //HINT (8) - Use a Try/Catch block here
-            //HINT: In the Try block call a new validateCode method, passing in the talent variable and an Out Integer 
-            //variable for the position
-            //HINT: the Catch block should be:
+            //HINT (4) - do fourth - Use a Try/Catch block here
+            //HINT: the Catch block should contain:
             //WriteLine("{0} is not a valid talent code. Assigned as Invalid.", talent);
 				
             Write("       Enter contestant's age >> ");
@@ -115,8 +114,11 @@ class GreenvilleRevenue
         return revenue;
     }
 
-    //HINT(9) - do ninth
-	//HINT: change this method to return a char datatype 
+    /// <summary>
+    /// Display talents and get input for a contestant with a particular talent.
+    /// </summary>
+    /// <param name="num">Number of contestants.</param>
+    /// <param name="contestants">The array of contestants.</param>
     private static void getLists(int num, Contestant[] contestants)
     {
         int x;
@@ -146,24 +148,23 @@ class GreenvilleRevenue
                     isValid = true;
                 else
                 {
+					//HINT (5) use a loop the talent codes and find match with user input 
                     //From the instructions:
                     //Use exception-handling techniques for the code verification and display the following message:
                     //Enter a talent type or Z to quit >> x
                     //x is not a valid code
                     //Enter a talent type or Z to quit >>
 
-                    //HINT (10) do tenth - Use a Try/Catch block here
-                    //HINT: In the Try block call a new validateCode method, passing in the talent variable and an Out Integer 
-                    //variable for the position
-                    //HINT: the Catch block should be the WriteLine and Write statements below 
+                    //HINT (6) do sixth - Use a Try/Catch block here.
+					//Check of the isValid is false. If so, throw an exception 
                     {
                         WriteLine("{0} is not a valid code", option);
                         Write("\nEnter a talent type or {0} to quit >> ", QUIT);
                         //HINT: set isValid to false
                     }
                 }
-                //HINT(11) - do eleventh
-                //HINT: use if (isValid && option != QUIT) here.
+                //HINT(7) - do seventh
+                //HINT: use section below in the try catch block hinted at above.
                 {
 
                     WriteLine("\nContestants with talent {0} are:", Contestant.talentStrings[pos]);
@@ -177,7 +178,7 @@ class GreenvilleRevenue
                         }
                     }
                     if (!found)
-                    //HINT (12) do twelveth - add brackets: {
+                    //HINT (8) do eight - add brackets: {
                         WriteLine("No contestants had talent {0}", Contestant.talentStrings[pos]);
                         isValid = false;
                         Write("\nEnter a talent type or {0} to quit >> ", QUIT);
@@ -185,10 +186,9 @@ class GreenvilleRevenue
                 //HINT: }
             }
         }
-        //HINT(13) do thirteenth - use return statement here to return the option variable;
     }
 	
-    //HINT(5) - do this fifth - Copy the code block at the bottom of this file and paste into 
+    //HINT(3) - do this third - Copy the code block at the bottom of this file and paste into 
     //the Main method above to debug this new method. When done debugging remove the code
     //HINT: create a new method with the following method header:
 	//public static void validateCode(char option, out int pos)
