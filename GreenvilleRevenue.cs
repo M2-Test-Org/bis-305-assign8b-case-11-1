@@ -93,7 +93,7 @@ class GreenvilleRevenue
             //x is not a valid talent code. Assigned as Invalid.
             //where x was the invalid code entered into the console.
             
-            //HINT (4) - do fourth - Use a Try/Catch block here
+            //HINT (3) - do third - Use a Try/Catch block here
             //HINT: the Catch block should contain:
             //WriteLine("{0} is not a valid talent code. Assigned as Invalid.", talent);
 				
@@ -148,14 +148,14 @@ class GreenvilleRevenue
                     isValid = true;
                 else
                 {
-					//HINT (5) use a loop the talent codes and find match with user input 
+					//HINT (4) do - fourth - use a loop the talent codes and find match with user input 
                     //From the instructions:
                     //Use exception-handling techniques for the code verification and display the following message:
                     //Enter a talent type or Z to quit >> x
                     //x is not a valid code
                     //Enter a talent type or Z to quit >>
 
-                    //HINT (6) do sixth - Use a Try/Catch block here.
+                    //HINT (5) do fifth - Use a Try/Catch block here.
 					//Check of the isValid is false. If so, throw an exception 
                     {
                         WriteLine("{0} is not a valid code", option);
@@ -163,7 +163,7 @@ class GreenvilleRevenue
                         //HINT: set isValid to false
                     }
                 }
-                //HINT(7) - do seventh
+                //HINT(6) - do sixth
                 //HINT: use section below in the try catch block hinted at above.
                 {
 
@@ -178,7 +178,7 @@ class GreenvilleRevenue
                         }
                     }
                     if (!found)
-                    //HINT (8) do eight - add brackets: {
+                    //HINT (7) do seventh - add brackets: {
                         WriteLine("No contestants had talent {0}", Contestant.talentStrings[pos]);
                         isValid = false;
                         Write("\nEnter a talent type or {0} to quit >> ", QUIT);
@@ -186,17 +186,7 @@ class GreenvilleRevenue
                 //HINT: }
             }
         }
-    }
-	
-    //HINT(3) - do this third - Copy the code block at the bottom of this file and paste into 
-    //the Main method above to debug this new method. When done debugging remove the code
-    //HINT: create a new method with the following method header:
-	//public static void validateCode(char option, out int pos)
-    //HINT: use a for loop in which you check the option input parameter against the
-    //Contestant.talentCodes. When the talent is found, set the position out parameter
-    //to the index value of the matched talend code.
-    //HINT: if the talent code is invalid, throw an ArgumentException
-    
+    }    
 }
 
 class Contestant
@@ -278,17 +268,3 @@ class ChildContestant : Contestant
         return ("Child Contestant " + Name + " " + TalentCode + "   Fee " + Fee.ToString("C"));
     }
 }
-
-//use this code to debug the validateCode method
-// Write("Enter talent code >> ");
-// char talent;
-// int pos = 0;
-// char.TryParse(ReadLine(), out talent);
-// try
-// {
-//     validateCode(talent, out pos);
-// }
-// catch
-// {
-//     WriteLine("{0} is not a valid code", talent);
-// }
