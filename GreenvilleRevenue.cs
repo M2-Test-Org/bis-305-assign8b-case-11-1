@@ -4,7 +4,7 @@ using System.Globalization;
 
 class GreenvilleRevenue
 {
-    static void Main()
+    public static void Main()
     {
         const int MIN_CONTESTANTS = 0;
         const int MAX_CONTESTANTS = 30;
